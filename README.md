@@ -1,11 +1,11 @@
-# 📋 ctx-copy.nvim 
+# ctx-copy.nvim 
 Stop playing CodeGuessr - share your code with file location
 
-## ✨ Features 
+## Features 
  - Copy code with file context (path:line) to clipboard
  - Customizable path prefix removal for cleaner output
 
-## ⚙️ Default keybinds + example output
+## Default keybinds + example output
  - **Copy context** ~ `<leader>cc`
 ```
 ctx-copy-nvim/README.md:6
@@ -16,7 +16,7 @@ ctx-copy-nvim/README.md:23
 "zlatej/ctx-copy.nvim",
 ```
 
-## 📦 Setup
+## Setup
 Lazy:
 ```lua
 return {
@@ -43,7 +43,7 @@ return {
 }
 ```
 
-## 🗺️ Roadmap 
+## Roadmap 
 - [x] Copy only context
 - [x] One line copy
 - [x] More dynamic path prefix removing
