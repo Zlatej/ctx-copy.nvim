@@ -14,7 +14,7 @@ function M.setup(opts)
 	vim.api.nvim_create_user_command("CopyContext", M.copy_context, {})
 	vim.keymap.set("n", cfg.keymap.cp_context, M.copy_context, { desc = "Copy context" })
 	-- Visual
-	vim.api.nvim_create_user_command("CopyVisual", M.copy_selection, {})
+	-- vim.api.nvim_create_user_command("CopyVisual", M.copy_selection, {})
 	vim.keymap.set("v", cfg.keymap.cp_visual, M.copy_selection, { desc = "Copy visual selection" })
 end
 
