@@ -56,5 +56,5 @@ return {
 - [x] copy only context
 - [x] one line copy
 - [x] more dynamic path prefix removing
-- [ ] visual selection copy
+- [x] visual selection copy
 - [ ] customize context
