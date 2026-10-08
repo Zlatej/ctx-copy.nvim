@@ -44,7 +44,7 @@ end
 function M.copy(selection)
 	local file = vim.fn.expand("%:p")
 	file = util.remove_prefix_path(file, cfg.prefixes)
-	local line_num = vim.fn.line(".")
+	local line_num = math.min(vim.fn.line("."), vim.fn.line("v"))
 
 	local res
 	if #selection ~= 0 then
