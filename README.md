@@ -1,23 +1,31 @@
-# ctx-copy.nvim 
-Stop playing CodeGuessr - share your code with file location
+# ctx-copy.nvim
 
-## Features 
- - Copy code with file context (path:line) to clipboard
- - Customizable path prefix removal for cleaner output
+stop playing CodeGuessr - share your code with file location
 
-## Default keybinds + example output
- - **Copy context** ~ `<leader>cc`
+## features
+
+- copy code with file context (path:line) to clipboard
+- customizable path prefix removal for cleaner output
+
+## default keybinds + example output
+
+- **copy context** ~ `<leader>cc`
+
 ```
 ctx-copy-nvim/README.md:6
 ```
- - **Copy line with context** ~ `<leader>cl`
+
+- **copy line with context** ~ `<leader>cl`
+
 ```
 ctx-copy-nvim/README.md:23
 "zlatej/ctx-copy.nvim",
 ```
 
-## Setup
-Lazy:
+## setup
+
+lazy:
+
 ```lua
 return {
 	"zlatej/ctx-copy.nvim",
@@ -25,11 +33,11 @@ return {
 		require("ctx-copy").setup({
             keymap = { -- default keymaps
                 cp_context = "<leader>cc"
-                cp_line = "<leader>cl", 
+                cp_line = "<leader>cl",
             },
-            -- Array of path prefixes to strip from absolute file paths
-            -- Prefixes are processed sequentially in the order listed
-            -- Examples for this config:
+            -- array of path prefixes to strip from absolute file paths
+            -- prefixes are processed sequentially in the order listed
+            -- examples for this config:
                 -- /home/user/code/ctx-copy-nvim/README.md -> ctx-copy-nvim/README.md
                 -- /home/user/.zshrc -> .zshrc
                 -- /home/user2/.zshrc -> /home/user2/.zshrc
@@ -43,10 +51,10 @@ return {
 }
 ```
 
-## Roadmap 
-- [x] Copy only context
-- [x] One line copy
-- [x] More dynamic path prefix removing
-- [ ] Visual selection copy
-- [ ] Customize context
+## roadmap
 
+- [x] copy only context
+- [x] one line copy
+- [x] more dynamic path prefix removing
+- [ ] visual selection copy
+- [ ] customize context
