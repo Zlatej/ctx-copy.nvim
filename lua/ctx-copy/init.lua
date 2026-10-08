@@ -2,6 +2,7 @@ local util = require("ctx-copy.util")
 local M = {}
 
 local cfg = {}
+local ns = vim.api.nvim_create_namespace("ctx-copy")
 
 function M.setup(opts)
 	local config = require("ctx-copy.config")
@@ -14,7 +15,6 @@ function M.setup(opts)
 	vim.api.nvim_create_user_command("CopyContext", M.copy_context, {})
 	vim.keymap.set("n", cfg.keymap.cp_context, M.copy_context, { desc = "Copy context" })
 	-- Visual
-	-- vim.api.nvim_create_user_command("CopyVisual", M.copy_selection, {})
 	vim.keymap.set("v", cfg.keymap.cp_visual, M.copy_selection, { desc = "Copy visual selection" })
 end
 
@@ -37,6 +37,12 @@ function M.copy_selection()
 	local region = vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), { type = vim.fn.mode() })
 	M.copy(table.concat(region, "\n"))
 	print("Copied " .. #region .. " lines")
+	vim.hl.range(0, ns, "IncSearch", "v", ".", {
+		regtype = vim.fn.mode(),
+		inclusive = true,
+		timeout = 150,
+	})
+	vim.cmd("normal! \27")
 end
 
 ---@param selection string
