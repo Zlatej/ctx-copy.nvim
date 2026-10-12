@@ -29,4 +29,26 @@ function M.remove_prefix_path(path, prefixes)
 	return M.trim_slash(path)
 end
 
+---@param lines string[]
+---@return string[]
+function M.dedent(lines)
+	local min_indent = math.huge
+	local out = {}
+
+	for _, line in ipairs(lines) do
+		if line:match("%S") then
+			min_indent = math.min(min_indent, #line:match("^%s*"))
+		end
+	end
+
+	if min_indent == math.huge then
+		return lines
+	end
+
+	for _, line in ipairs(lines) do
+		table.insert(out, line:sub(min_indent + 1))
+	end
+	return out
+end
+
 return M
