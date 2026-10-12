@@ -15,7 +15,7 @@ function M.setup(opts)
 	vim.api.nvim_create_user_command("CopyContext", M.copy_context, {})
 	vim.keymap.set("n", cfg.keymap.cp_context, M.copy_context, { desc = "Copy context" })
 	-- Visual
-	vim.keymap.set("v", cfg.keymap.cp_visual, M.copy_selection, { desc = "Copy visual selection" })
+	vim.keymap.set("x", cfg.keymap.cp_visual, M.copy_selection, { desc = "Copy visual selection" })
 end
 
 function M.copy_line()
@@ -34,15 +34,20 @@ function M.copy_context()
 end
 
 function M.copy_selection()
-	local region = vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), { type = vim.fn.mode() })
-	M.copy(table.concat(region, "\n"))
-	print("Copied " .. #region .. " lines")
+	local lines = vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), { type = vim.fn.mode() })
+	if cfg.remove_indent then
+		lines = util.dedent(lines)
+	end
+
+	M.copy(table.concat(lines, "\n"))
 	vim.hl.range(0, ns, "IncSearch", "v", ".", {
 		regtype = vim.fn.mode(),
 		inclusive = true,
 		timeout = 150,
 	})
 	vim.cmd("normal! \27")
+
+	print("Copied " .. #lines .. " lines")
 end
 
 ---@param selection string
