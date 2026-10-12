@@ -14,7 +14,7 @@ function M.setup(opts)
 	-- Context
 	vim.api.nvim_create_user_command("CopyContext", M.copy_context, {})
 	vim.keymap.set("n", cfg.keymap.cp_context, M.copy_context, { desc = "Copy context" })
-	-- Visual
+	-- Visual ("x", not "v", "v" also maps Select mode)
 	vim.keymap.set("x", cfg.keymap.cp_visual, M.copy_selection, { desc = "Copy visual selection" })
 end
 
@@ -45,7 +45,7 @@ function M.copy_selection()
 		inclusive = true,
 		timeout = 150,
 	})
-	vim.cmd("normal! \27")
+	vim.cmd("normal! \27") -- leave visual mode
 
 	print("Copied " .. #lines .. " lines")
 end

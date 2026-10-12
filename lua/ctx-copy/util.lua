@@ -29,6 +29,7 @@ function M.remove_prefix_path(path, prefixes)
 	return M.trim_slash(path)
 end
 
+--- Strips the excess indentation shared by all lines. Blank lines are ignored when computing the shared indent.
 ---@param lines string[]
 ---@return string[]
 function M.dedent(lines)
